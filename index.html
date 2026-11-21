@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="ht">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0c0d">
+  <meta name="description" content="Dekouvri epi achte beat orijinal sou AfemOK. Voye lyen boutik la bay fanatik ou yo sou YouTube.">
+  <title>AfemOK — Beat pou pwochen hit ou a</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0c0d;
+      --panel: #121416;
+      --panel-soft: #181b1e;
+      --line: rgba(255,255,255,.09);
+      --muted: #9a9fa3;
+      --text: #f5f5f2;
+      --lime: #c3f56a;
+      --lime-dark: #9bc94e;
+      --orange: #ff8a52;
+      --radius: 18px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 82% 0%, rgba(86, 107, 54, .12), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      min-width: 320px;
+    }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 3px;
+    }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: inline-flex; gap: 10px; align-items: center; font-weight: 850; letter-spacing: -.8px; font-size: 21px; }
+    .brand-mark {
+      width: 31px; height: 31px; border-radius: 10px; display: grid; place-items: center;
+      color: #14170e; background: var(--lime); font-size: 15px; font-weight: 950;
+      transform: rotate(-7deg);
+    }
+    .nav { display: flex; align-items: center; gap: 30px; color: #b7bbbd; font-size: 13px; }
+    .nav a:hover { color: var(--text); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .language-select {
+      border: 1px solid var(--line); border-radius: 999px; padding: 9px 11px;
+      color: var(--text); background: #101213; font-size: 11px;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    .button {
+      border: 0; border-radius: 999px; padding: 11px 17px; cursor: pointer;
+      font-size: 12px; font-weight: 750; transition: transform .18s, background .18s;
+    }
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: var(--lime); color: #13170c; }
+    .button-primary:hover { background: #d3ff83; }
+    .button-quiet { background: transparent; border: 1px solid var(--line); }
+    .cart-button { position: relative; padding-right: 17px; }
+    .cart-count {
+      display: inline-grid; place-items: center; width: 19px; height: 19px; margin-left: 6px;
+      background: var(--lime); color: #14170e; border-radius: 50%; font-size: 10px; font-weight: 900;
+    }
+    .hero {
+      min-height: 430px; display: grid; grid-template-columns: 1fr .87fr;
+      align-items: center; gap: 40px; padding: 56px 0 45px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; color: var(--lime);
+      font-size: 10px; letter-spacing: 1.65px; font-weight: 850; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 19px; height: 1px; background: currentColor; }
+    h1 { font-size: clamp(42px, 6vw, 72px); letter-spacing: -4px; line-height: .99; margin: 19px 0 18px; max-width: 620px; }
+    h1 span { color: var(--lime); }
+    .hero-copy { color: #a7abad; font-size: 15px; line-height: 1.75; max-width: 440px; margin: 0 0 26px; }
+    .hero-buttons { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; }
+    .hero-buttons .button { padding: 13px 20px; }
+    .hero-note { display: flex; align-items: center; gap: 9px; color: #858b8e; font-size: 11px; margin-top: 21px; }
+    .hero-note b { color: #d8d9d5; font-weight: 650; }
+    .note-dot { width: 6px; height: 6px; background: var(--lime); border-radius: 50%; }
+    .hero-art {
+      min-height: 310px; position: relative; overflow: hidden; border-radius: 24px;
+      background: linear-gradient(140deg, #292e22 0%, #171a18 44%, #333327 100%);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: 0 28px 90px rgba(0,0,0,.32);
+    }
+    .hero-art::before, .hero-art::after {
+      content: ""; position: absolute; border-radius: 50%; filter: blur(1px);
+    }
+    .hero-art::before {
+      width: 255px; height: 255px; right: 12%; top: -50px;
+      background: radial-gradient(circle at 38% 35%, #e1efb4 0 4%, #9db765 10%, #555f3d 30%, #1b2018 68%);
+      box-shadow: 0 0 80px rgba(194,245,106,.17);
+    }
+    .hero-art::after {
+      width: 330px; height: 330px; left: -55px; bottom: -218px;
+      border: 1px solid rgba(204,236,155,.32); box-shadow: 0 0 0 19px rgba(204,236,155,.025), 0 0 0 39px rgba(204,236,155,.025), 0 0 0 59px rgba(204,236,155,.025);
+    }
+    .art-grid {
+      position: absolute; inset: 0; opacity: .14;
+      background-image: linear-gradient(rgba(255,255,255,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.14) 1px, transparent 1px);
+      background-size: 40px 40px; mask-image: linear-gradient(120deg, transparent, black);
+    }
+    .art-label {
+      position: absolute; bottom: 23px; left: 24px; z-index: 1;
+      font-size: 10px; color: #d2d7c8; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .art-label strong { display: block; font-size: 20px; color: white; letter-spacing: -.4px; margin-top: 5px; }
+    .art-sticker {
+      position: absolute; z-index: 2; top: 24px; left: 24px; border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px; padding: 8px 11px; font-size: 9px; letter-spacing: 1.3px; color: #e8ebdd;
+      backdrop-filter: blur(8px); background: rgba(0,0,0,.19);
+    }
+    .art-wave { position: absolute; z-index: 1; bottom: 75px; right: 24px; display: flex; height: 55px; gap: 4px; align-items: center; opacity: .75; }
+    .art-wave i { display: block; width: 3px; border-radius: 3px; background: var(--lime); height: var(--h); }
+    .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); padding: 18px 0; }
+    .stat { display: flex; justify-content: center; gap: 10px; align-items: center; border-right: 1px solid var(--line); }
+    .stat:last-child { border: 0; }
+    .stat b { font-size: 14px; }
+    .stat span { color: var(--muted); font-size: 11px; }
+    main { padding: 67px 0 95px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px; }
+    .section-head h2 { font-size: 29px; letter-spacing: -1.2px; margin: 9px 0 0; }
+    .section-head p { color: var(--muted); font-size: 12px; margin: 9px 0 0; }
+    #databaseStatus { min-height: 1em; margin-top: 6px; font-size: 10px; }
+    .share-link { display: flex; gap: 8px; align-items: center; color: #d6d9d4; font-size: 11px; padding-bottom: 5px; }
+    .share-link svg { color: var(--lime); }
+    .toolbar { display: flex; justify-content: space-between; gap: 15px; align-items: center; margin-bottom: 20px; }
+    .filters { display: flex; gap: 7px; flex-wrap: wrap; }
+    .filter {
+      border: 1px solid var(--line); color: #adb2b3; background: transparent; border-radius: 999px;
+      padding: 8px 13px; font-size: 10px; cursor: pointer;
+    }
+    .filter:hover, .filter.active { color: #171a12; background: var(--lime); border-color: var(--lime); }
+    .search {
+      display: flex; align-items: center; gap: 9px; border: 1px solid var(--line);
+      padding: 0 12px; height: 37px; border-radius: 999px; min-width: 215px; background: #101213;
+    }
+    .search svg { color: #858b8d; flex: none; }
+    .search input { width: 100%; border: 0; outline: 0; color: var(--text); background: transparent; font-size: 11px; }
+    .search input::placeholder { color: #73797b; }
+    .beats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .beat-card {
+      min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 16px;
+      background: linear-gradient(150deg, #171a1c, #111314); transition: transform .2s, border-color .2s;
+    }
+    .beat-card:hover { transform: translateY(-3px); border-color: rgba(195,245,106,.35); }
+    .cover { height: 157px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .cover::before { content: ""; position: absolute; width: 155px; height: 155px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); box-shadow: 0 0 0 13px rgba(255,255,255,.035), 0 0 0 28px rgba(255,255,255,.025); }
+    .cover::after { content: ""; position: absolute; width: 60px; height: 60px; border: 1px solid rgba(255,255,255,.27); transform: rotate(45deg); }
+    .cover-1 { background: radial-gradient(circle at 56% 40%, #876147, #392d27 45%, #1e1a19 100%); }
+    .cover-2 { background: radial-gradient(circle at 43% 38%, #67758c, #293746 45%, #171c23 100%); }
+    .cover-3 { background: radial-gradient(circle at 61% 40%, #9d8157, #51412f 43%, #201b17 100%); }
+    .cover-4 { background: radial-gradient(circle at 48% 43%, #705d78, #352c3f 45%, #1c1920 100%); }
+    .cover-5 { background: radial-gradient(circle at 55% 40%, #5e7971, #2b423d 45%, #171e1c 100%); }
+    .cover-6 { background: radial-gradient(circle at 48% 43%, #9a655e, #4d302e 45%, #211919 100%); }
+    .cover-7 { background: radial-gradient(circle at 57% 42%, #747e4f, #3c422b 45%, #1a1d16 100%); }
+    .cover-8 { background: radial-gradient(circle at 52% 42%, #776c9a, #3e3854 45%, #1c1a22 100%); }
+    .cover-symbol { color: rgba(255,255,255,.84); font-size: 32px; font-weight: 300; z-index: 1; }
+    .cover-tag { position: absolute; top: 11px; left: 11px; z-index: 1; font-size: 8px; letter-spacing: .9px; text-transform: uppercase; background: rgba(10,11,11,.58); border: 1px solid rgba(255,255,255,.14); padding: 6px 8px; border-radius: 999px; }
+    .play-button {
+      position: absolute; right: 12px; bottom: 11px; width: 35px; height: 35px; border: 0; border-radius: 50%;
+      display: grid; place-items: center; background: var(--lime); color: #15190f; cursor: pointer; z-index: 2;
+    }
+    .play-button svg { width: 13px; height: 13px; }
+    .beat-info { padding: 14px 14px 13px; }
+    .beat-title-row { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
+    .beat-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 750; }
+    .heart { flex: none; border: 0; background: none; color: #7e8587; cursor: pointer; padding: 0; font-size: 16px; line-height: 1; }
+    .heart.fav { color: var(--orange); }
+    .producer { margin-top: 5px; color: #909698; font-size: 10px; }
+    .beat-meta { display: flex; justify-content: space-between; border-top: 1px solid var(--line); margin-top: 13px; padding-top: 10px; color: #a3a8a9; font-size: 9px; }
+    .beat-meta b { color: #d3d5d0; font-weight: 600; }
+    .beat-buy-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 13px; }
+    .price { font-size: 15px; font-weight: 800; }
+    .add-button { border: 1px solid rgba(195,245,106,.38); background: rgba(195,245,106,.08); color: var(--lime); border-radius: 999px; padding: 7px 10px; cursor: pointer; font-size: 9px; font-weight: 750; }
+    .add-button:hover { background: var(--lime); color: #171a12; }
+    .empty-state { grid-column: 1 / -1; border: 1px dashed var(--line); color: var(--muted); padding: 35px; text-align: center; border-radius: 16px; font-size: 13px; }
+    .bottom-cta {
+      margin-top: 56px; padding: 28px 30px; border-radius: 18px; border: 1px solid rgba(195,245,106,.18);
+      background: linear-gradient(105deg, rgba(195,245,106,.10), rgba(195,245,106,.025) 60%, transparent);
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    }
+    .bottom-cta h3 { margin: 0 0 7px; font-size: 18px; letter-spacing: -.4px; }
+    .bottom-cta p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    footer { border-top: 1px solid var(--line); color: #858b8d; font-size: 10px; padding: 22px 0 30px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 15px; align-items: center; }
+    .footer-brand { color: var(--text); font-weight: 800; }
+    .toast {
+      position: fixed; bottom: 25px; left: 50%; transform: translate(-50%, 15px); opacity: 0; pointer-events: none;
+      z-index: 10; background: #f4f4ef; color: #171a12; border-radius: 999px; padding: 11px 16px;
+      font-size: 11px; font-weight: 750; box-shadow: 0 12px 40px #0008; transition: .2s;
+    }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    .drawer-backdrop { position: fixed; inset: 0; z-index: 19; background: rgba(0,0,0,.64); opacity: 0; visibility: hidden; transition: .2s; }
+    .drawer-backdrop.open { opacity: 1; visibility: visible; }
+    .drawer {
+      position: fixed; z-index: 20; right: 0; top: 0; height: 100dvh; width: min(410px, 100%);
+      padding: 25px; background: #111415; border-left: 1px solid var(--line); transform: translateX(100%); transition: .25s;
+      display: flex; flex-direction: column;
+    }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 17px; }
+    .drawer-head h2 { margin: 0; font-size: 19px; }
+    .close-button { border: 1px solid var(--line); background: transparent; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; }
+    .cart-items { flex: 1; overflow: auto; padding: 10px 0; }
+    .cart-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding: 14px 0; }
+    .cart-item strong { display: block; font-size: 12px; margin-bottom: 4px; }
+    .cart-item span { color: var(--muted); font-size: 10px; }
+    .remove-item { border: 0; background: transparent; color: #a6abad; font-size: 10px; cursor: pointer; }
+    .cart-empty { color: var(--muted); text-align: center; font-size: 12px; padding: 35px 10px; }
+    .cart-total { border-top: 1px solid var(--line); padding-top: 17px; }
+    .total-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-bottom: 16px; }
+    .total-row strong { font-size: 18px; }
+    .checkout { width: 100%; padding: 13px; }
+    .drawer-note { color: #81888a; font-size: 9px; line-height: 1.5; text-align: center; margin: 11px 0 0; }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr .75fr; gap: 25px; min-height: 380px; }
+      .hero-art { min-height: 270px; }
+      .beats-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 32px, 460px); }
+      .topbar { height: 64px; }
+      .nav { display: none; }
+      .nav-actions .button-quiet { display: none; }
+      .nav-actions { gap: 7px; }
+      .language-select { padding: 8px 7px; font-size: 10px; }
+      .brand { font-size: 19px; }
+      .hero { display: flex; flex-direction: column; align-items: stretch; gap: 29px; padding: 46px 0 30px; }
+      h1 { font-size: clamp(46px, 14vw, 63px); letter-spacing: -3.4px; }
+      .hero-copy { font-size: 13px; }
+      .hero-art { min-height: 240px; }
+      .hero-art::before { width: 220px; height: 220px; right: 4%; }
+      .stats { padding: 15px 0; }
+      .stat { flex-direction: column; gap: 4px; text-align: center; }
+      .stat b { font-size: 12px; }
+      .stat span { font-size: 9px; }
+      main { padding: 49px 0 65px; }
+      .section-head { align-items: start; }
+      .section-head h2 { font-size: 25px; }
+      .share-link { font-size: 0; padding-top: 5px; }
+      .toolbar { align-items: stretch; flex-direction: column-reverse; }
+      .search { width: 100%; }
+      .filters { flex-wrap: nowrap; overflow-x: auto; padding: 2px 0 5px; scrollbar-width: none; }
+      .filters::-webkit-scrollbar { display: none; }
+      .filter { white-space: nowrap; }
+      .beats-grid { gap: 10px; }
+      .cover { height: 125px; }
+      .cover::before { width: 125px; height: 125px; }
+      .cover::after { width: 47px; height: 47px; }
+      .beat-info { padding: 11px 10px; }
+      .beat-title { font-size: 11px; }
+      .producer { font-size: 9px; }
+      .beat-meta { font-size: 8px; }
+      .price { font-size: 13px; }
+      .add-button { font-size: 8px; padding: 7px 8px; }
+      .bottom-cta { padding: 22px 18px; align-items: start; flex-direction: column; }
+      .footer-row { flex-direction: column; align-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <a class="brand" href="#" aria-label="AfemOK, ale nan kòmansman" data-i18n-aria="homeLink">
+      <span class="brand-mark">A</span><span>AfemOK</span>
+    </a>
+    <nav class="nav" aria-label="Navigasyon prensipal" data-i18n-aria="mainNavigation">
+      <a href="#beats" data-i18n="navBeats">Beat yo</a>
+      <a href="#lisans" data-i18n="navLicense">Lisans</a>
+      <a href="#footer" data-i18n="navContact">Kontak</a>
+    </nav>
+    <div class="nav-actions">
+      <label class="sr-only" for="languageSelect" data-i18n="languageLabel">Lang</label>
+      <select class="language-select" id="languageSelect" aria-label="Chwazi lang" data-i18n-aria="chooseLanguage">
+        <option value="ht">Kreyòl</option>
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+      </select>
+      <button class="button button-quiet" id="shareTop" data-i18n="shareStore" type="button">Pataje boutik la</button>
+      <button class="button button-primary cart-button" id="openCart" type="button"><span data-i18n="cart">Panyen</span> <span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <section class="wrap hero">
+    <div>
+      <div class="eyebrow" data-i18n="heroEyebrow">Son pa w. Règ pa w.</div>
+      <h1 data-i18n-html="heroTitle">Beat pou<br>pwochen <span>hit</span> ou a.</h1>
+      <p class="hero-copy" data-i18n="heroCopy">Dekouvri son ki gen karaktè, jwenn lisans ou bezwen an, epi kòmanse anrejistre. Tout bagay nan yon sèl plas.</p>
+      <div class="hero-buttons">
+        <a class="button button-primary" href="#beats" data-i18n="discoverBeats">Dekouvri beat yo <span aria-hidden="true">↗</span></a>
+        <button class="button button-quiet" id="copyHero" data-i18n="copyYoutube" type="button">Kopye lyen pou YouTube</button>
+      </div>
+      <div class="hero-note"><span class="note-dot"></span><b data-i18n="shopReady">Boutik AfemOK la pare</b><span>·</span><span data-i18n="addYourSounds">Ajoute son pa w yo</span></div>
+    </div>
+    <div class="hero-art" aria-label="Grafik abstrè AfemOK" data-i18n-aria="heroArtwork">
+      <div class="art-grid"></div>
+      <div class="art-sticker">AFEMOK SOUND SELECTS · 001</div>
+      <div class="art-wave" aria-hidden="true">
+        <i style="--h:16px"></i><i style="--h:30px"></i><i style="--h:21px"></i><i style="--h:45px"></i><i style="--h:29px"></i><i style="--h:53px"></i><i style="--h:34px"></i><i style="--h:19px"></i><i style="--h:42px"></i><i style="--h:25px"></i><i style="--h:51px"></i><i style="--h:31px"></i><i style="--h:18px"></i><i style="--h:39px"></i><i style="--h:27px"></i><i style="--h:46px"></i><i style="--h:17px"></i>
+      </div>
+      <div class="art-label"><span data-i18n="selectedSound">Selected sound</span><strong data-i18n="makeMusic">Fè lide ou tounen mizik.</strong></div>
+    </div>
+  </section>
+
+  <section class="wrap stats" aria-label="Avantaj AfemOK" data-i18n-aria="shopBenefits">
+    <div class="stat"><b data-i18n="originalSound">Son orijinal</b><span data-i18n="originalSoundCopy">Pwodiksyon ki gen pèsonalite</span></div>
+    <div class="stat"><b data-i18n="clearLicenses">Lisans klè</b><span data-i18n="clearLicensesCopy">Chwazi sa ki mache pou ou</span></div>
+    <div class="stat"><b data-i18n="easyPurchase">Achte fasil</b><span data-i18n="easyPurchaseCopy">Jwenn aksè ak beat ou chwazi a</span></div>
+  </section>
+
+  <main class="wrap" id="beats">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow" data-i18n="catalog">Katalòg la</div>
+        <h2 data-i18n="findYourSound">Jwenn son pa w la.</h2>
+        <p data-i18n="catalogCopy">Chèche nan beat yo epi mete sa ou renmen yo nan panyen. Non ak pri yo se egzanp pou ranplase ak katalòg pa w.</p>
+        <p id="databaseStatus" role="status" aria-live="polite"></p>
+      </div>
+      <button class="share-link" id="shareCatalog" type="button" aria-label="Kopye lyen boutik AfemOK" data-i18n-aria="copyShopLink">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3A5 5 0 0 0 13 2.93l-1.72 1.72M14 11a5 5 0 0 0-7.07 0l-3 3A5 5 0 0 0 11 21.07l1.72-1.72" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span data-i18n="copyShopLink">Kopye lyen boutik la</span>
+      </button>
+    </div>
+    <div class="toolbar">
+      <div class="filters" role="group" aria-label="Filtre pa jan mizik" data-i18n-aria="genreFilters">
+        <button class="filter active" data-genre="Tout" data-i18n="allBeats" type="button">Tout beat yo</button>
+        <button class="filter" data-genre="Trap" data-i18n="genreTrap" type="button">Trap</button>
+        <button class="filter" data-genre="Afro" data-i18n="genreAfro" type="button">Afro</button>
+        <button class="filter" data-genre="R&amp;B" data-i18n="genreRnB" type="button">R&amp;B</button>
+        <button class="filter" data-genre="Drill" data-i18n="genreDrill" type="button">Drill</button>
+      </div>
+      <label class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.4 4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input id="searchInput" type="search" placeholder="Chèche yon beat..." aria-label="Chèche beat" data-i18n-placeholder="searchPlaceholder" data-i18n-aria="searchLabel">
+      </label>
+    </div>
+    <div class="beats-grid" id="beatsGrid" aria-live="polite"></div>
+
+    <section class="bottom-cta" id="lisans">
+      <div>
+        <h3 data-i18n="youtubeQuestion">Ou jwenn beat ou a sou YouTube?</h3>
+        <p data-i18n="youtubeCopy">Kole lyen boutik la nan deskripsyon videyo a pou moun ka rive sou AfemOK fasil.</p>
+      </div>
+      <button class="button button-primary" id="copyBottom" data-i18n="copyShopCta" type="button">Kopye lyen boutik la ↗</button>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="wrap footer-row">
+      <span class="footer-brand">AfemOK <span style="color:#858b8d;font-weight:400" data-i18n="footerTagline">· Beat pa w, fason pa w.</span></span>
+      <span>© <span id="year"></span> AfemOK. <span data-i18n="rightsReserved">Tout dwa rezève.</span></span>
+      <span data-i18n="contactNote">Kesyon sou lisans? Ajoute imel kontak ou isit la.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="drawer-backdrop" id="backdrop"></div>
+  <aside class="drawer" id="cartDrawer" aria-label="Panyen ou" aria-hidden="true" data-i18n-aria="cartAria">
+    <div class="drawer-head"><h2 data-i18n="yourCart">Panyen ou</h2><button class="close-button" id="closeCart" aria-label="Fèmen panyen" data-i18n-aria="closeCart" type="button">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-total">
+      <div class="total-row"><span data-i18n="total">Total</span><strong id="cartTotal">$0</strong></div>
+      <button class="button button-primary checkout" id="checkout" data-i18n="checkout" type="button">Kontinye ak acha a</button>
+      <p class="drawer-note" data-i18n="demoCheckout">Demo boutik: konekte yon founisè peman ak fichye beat/licans ou yo pou aktive acha anliy.</p>
+    </div>
+  </aside>
+
+  <script>
+    const SUPABASE_URL = "";
+    const SUPABASE_ANON_KEY = "";
+    const translations = {
+      ht: {
+        pageTitle: "AfemOK — Beat pou pwochen hit ou a",         languageLabel: "Lang", chooseLanguage: "Chwazi lang", homeLink: "AfemOK, ale nan kòmansman", heroArtwork: "Grafik abstrè AfemOK", mainNavigation: "Navigasyon prensipal", shopBenefits: "Avantaj AfemOK", navBeats: "Beat yo", navLicense: "Lisans", navContact: "Kontak",
+        shareStore: "Pataje boutik la", cart: "Panyen", heroEyebrow: "Son pa w. Règ pa w.",
+        heroTitle: "Beat pou<br>pwochen <span>hit</span> ou a.", heroCopy: "Dekouvri son ki gen karaktè, jwenn lisans ou bezwen an, epi kòmanse anrejistre. Tout bagay nan yon sèl plas.",
+        discoverBeats: "Dekouvri beat yo ↗", copyYoutube: "Kopye lyen pou YouTube", shopReady: "Boutik AfemOK la pare", addYourSounds: "Ajoute son pa w yo",
+        selectedSound: "Son nou chwazi", makeMusic: "Fè lide ou tounen mizik.", originalSound: "Son orijinal", originalSoundCopy: "Pwodiksyon ki gen pèsonalite",
+        clearLicenses: "Lisans klè", clearLicensesCopy: "Chwazi sa ki mache pou ou", easyPurchase: "Achte fasil", easyPurchaseCopy: "Jwenn aksè ak beat ou chwazi a",
+        catalog: "Katalòg la", findYourSound: "Jwenn son pa w la.", catalogCopy: "Chèche nan beat yo epi mete sa ou renmen yo nan panyen. Non ak pri yo se egzanp pou ranplase ak katalòg pa w.",
+        copyShopLink: "Kopye lyen boutik la", allBeats: "Tout beat yo", genreTrap: "Trap", genreAfro: "Afro", genreRnB: "R&B", genreDrill: "Drill",
+        genreFilters: "Filtre pa jan mizik", searchPlaceholder: "Chèche yon beat...", searchLabel: "Chèche beat", youtubeQuestion: "Ou jwenn beat ou a sou YouTube?",
+        youtubeCopy: "Kole lyen boutik la nan deskripsyon videyo a pou moun ka rive sou AfemOK fasil.", copyShopCta: "Kopye lyen boutik la ↗",
+        footerTagline: "· Beat pa w, fason pa w.", rightsReserved: "Tout dwa rezève.", contactNote: "Kesyon sou lisans? Ajoute imel kontak ou isit la.",
+        cartAria: "Panyen ou", yourCart: "Panyen ou", closeCart: "Fèmen panyen", total: "Total", checkout: "Kontinye ak acha a",
+        demoCheckout: "Demo boutik: konekte yon founisè peman ak fichye beat/licans ou yo pou aktive acha anliy.",
+        demoCatalog: "Katalòg demonstrasyon an ap parèt. Mete URL ak kle Supabase nan kòd la pou konekte baz done a.",
+        connectedCatalog: "Baz done a konekte · {count} beat", databaseError: "Nou pa kapab chaje katalòg baz done a. Verifye konfigirasyon Supabase la epi eseye ankò.",
+        emptySearch: "Pa gen beat ki koresponn. Eseye yon lòt rechèch.", stop: "Kanpe", listen: "Koute", removeFrom: "Retire nan", addTo: "Ajoute nan",
+        favorite: "favori", addAgain: "Ajoute ankò +", addToCart: "Ajoute nan panyen +", bpm: "BPM", remove: "Retire",
+        emptyCart: "Panyen an vid pou kounye a.<br>Chwazi yon beat pou kòmanse.", copySuccess: "Lyen AfemOK la kopye. Kole li nan deskripsyon YouTube ou!",
+        copyFallback: "Kopye adrès sa a pou YouTube: {link}", preview: "Preview {title}: ajoute fichye audio beat la pou aktive son.",
+        previewStopped: "Preview kanpe.", addedToCart: "{title} ajoute nan panyen.", typeBeat: "beat",
+        checkoutNotice: "Pou vann anliy, konekte AfemOK ak peman ak livrezon fichye."
+      },
+      fr: {
+        pageTitle: "AfemOK — Le beat de votre prochain hit",         languageLabel: "Langue", chooseLanguage: "Choisir la langue", homeLink: "AfemOK, revenir au début", heroArtwork: "Illustration abstraite AfemOK", mainNavigation: "Navigation principale", shopBenefits: "Avantages AfemOK", navBeats: "Instrumentales", navLicense: "Licences", navContact: "Contact",
+        shareStore: "Partager la boutique", cart: "Panier", heroEyebrow: "Votre son. Vos règles.",
+        heroTitle: "Le beat de<br>votre prochain <span>hit</span>.", heroCopy: "Découvrez des sons de caractère, trouvez la licence qu'il vous faut et commencez à enregistrer. Tout au même endroit.",
+        discoverBeats: "Découvrir les beats ↗", copyYoutube: "Copier le lien pour YouTube", shopReady: "La boutique AfemOK est prête", addYourSounds: "Ajoutez vos sons",
+        selectedSound: "Sélection sonore", makeMusic: "Transformez vos idées en musique.", originalSound: "Sons originaux", originalSoundCopy: "Des productions qui ont du caractère",
+        clearLicenses: "Licences claires", clearLicensesCopy: "Choisissez celle qui vous convient", easyPurchase: "Achat facile", easyPurchaseCopy: "Accédez au beat de votre choix",
+        catalog: "Le catalogue", findYourSound: "Trouvez votre son.", catalogCopy: "Recherchez des beats et ajoutez vos préférés au panier. Les noms et les prix sont des exemples à remplacer par votre catalogue.",
+        copyShopLink: "Copier le lien de la boutique", allBeats: "Tous les beats", genreTrap: "Trap", genreAfro: "Afro", genreRnB: "R&B", genreDrill: "Drill",
+        genreFilters: "Filtrer par genre", searchPlaceholder: "Rechercher un beat...", searchLabel: "Rechercher un beat", youtubeQuestion: "Vous avez trouvé votre beat sur YouTube ?",
+        youtubeCopy: "Ajoutez le lien de la boutique à la description de votre vidéo pour diriger facilement votre public vers AfemOK.", copyShopCta: "Copier le lien de la boutique ↗",
+        footerTagline: "· Votre beat, votre style.", rightsReserved: "Tous droits réservés.", contactNote: "Une question sur les licences ? Ajoutez votre adresse e-mail ici.",
+        cartAria: "Votre panier", yourCart: "Votre panier", closeCart: "Fermer le panier", total: "Total", checkout: "Continuer l'achat",
+        demoCheckout: "Boutique démo : connectez un prestataire de paiement et les fichiers beat/licence pour activer les achats en ligne.",
+        demoCatalog: "Le catalogue de démonstration est affiché. Ajoutez l'URL et la clé Supabase dans le code pour connecter la base de données.",
+        connectedCatalog: "Base de données connectée · {count} beats", databaseError: "Impossible de charger le catalogue. Vérifiez la configuration Supabase et réessayez.",
+        emptySearch: "Aucun beat trouvé. Essayez une autre recherche.", stop: "Arrêter", listen: "Écouter", removeFrom: "Retirer des", addTo: "Ajouter aux",
+        favorite: "favoris", addAgain: "Ajouter encore +", addToCart: "Ajouter au panier +", bpm: "BPM", remove: "Retirer",
+        emptyCart: "Votre panier est vide pour le moment.<br>Choisissez un beat pour commencer.", copySuccess: "Lien AfemOK copié. Collez-le dans la description de votre vidéo YouTube !",
+        copyFallback: "Copiez cette adresse pour YouTube : {link}", preview: "Aperçu de {title} : ajoutez le fichier audio du beat pour activer le son.",
+        previewStopped: "Aperçu arrêté.", addedToCart: "{title} ajouté au panier.", typeBeat: "type beat",
+        checkoutNotice: "Pour vendre en ligne, connectez AfemOK à un système de paiement et de livraison des fichiers."
+      },
+      en: {
+        pageTitle: "AfemOK — The beat for your next hit",         languageLabel: "Language", chooseLanguage: "Choose language", homeLink: "AfemOK, go to the top", heroArtwork: "AfemOK abstract artwork", mainNavigation: "Main navigation", shopBenefits: "AfemOK benefits", navBeats: "Beats", navLicense: "Licensing", navContact: "Contact",
+        shareStore: "Share the shop", cart: "Cart", heroEyebrow: "Your sound. Your rules.",
+        heroTitle: "The beat for<br>your next <span>hit</span>.", heroCopy: "Discover sounds with character, find the license you need, and start recording. Everything in one place.",
+        discoverBeats: "Explore the beats ↗", copyYoutube: "Copy link for YouTube", shopReady: "AfemOK shop is ready", addYourSounds: "Add your sounds",
+        selectedSound: "Selected sound", makeMusic: "Turn your ideas into music.", originalSound: "Original sounds", originalSoundCopy: "Productions with personality",
+        clearLicenses: "Clear licensing", clearLicensesCopy: "Choose what works for you", easyPurchase: "Easy checkout", easyPurchaseCopy: "Get access to your chosen beat",
+        catalog: "The catalog", findYourSound: "Find your sound.", catalogCopy: "Browse beats and add your favorites to the cart. Names and prices are examples to replace with your catalog.",
+        copyShopLink: "Copy shop link", allBeats: "All beats", genreTrap: "Trap", genreAfro: "Afro", genreRnB: "R&B", genreDrill: "Drill",
+        genreFilters: "Filter by genre", searchPlaceholder: "Search for a beat...", searchLabel: "Search beats", youtubeQuestion: "Found your beat on YouTube?",
+        youtubeCopy: "Add the shop link to your video description so people can easily find AfemOK.", copyShopCta: "Copy shop link ↗",
+        footerTagline: "· Your beat, your way.", rightsReserved: "All rights reserved.", contactNote: "Questions about licensing? Add your contact email here.",
+        cartAria: "Your cart", yourCart: "Your cart", closeCart: "Close cart", total: "Total", checkout: "Continue to checkout",
+        demoCheckout: "Demo shop: connect a payment provider and beat/license files to enable online purchases.",
+        demoCatalog: "Showing the demo catalog. Add your Supabase URL and key in the code to connect the database.",
+        connectedCatalog: "Database connected · {count} beats", databaseError: "Could not load the database catalog. Check the Supabase configuration and try again.",
+        emptySearch: "No matching beats. Try another search.", stop: "Stop", listen: "Listen", removeFrom: "Remove from", addTo: "Add to",
+        favorite: "favorites", addAgain: "Add again +", addToCart: "Add to cart +", bpm: "BPM", remove: "Remove",
+        emptyCart: "Your cart is empty for now.<br>Choose a beat to get started.", copySuccess: "AfemOK link copied. Paste it in your YouTube description!",
+        copyFallback: "Copy this address for YouTube: {link}", preview: "Preview {title}: add the beat audio file to enable playback.",
+        previewStopped: "Preview stopped.", addedToCart: "{title} added to cart.", typeBeat: "type beat",
+        checkoutNotice: "To sell online, connect AfemOK to payment processing and file delivery."
+      }
+    };
+    let currentLanguage = localStorage.getItem("afemok-language") || "ht";
+    if (!translations[currentLanguage]) currentLanguage = "ht";
+    function t(key, values = {}) {
+      return (translations[currentLanguage][key] || translations.ht[key] || key)
+        .replace(/\{(\w+)\}/g, (_, name) => values[name] ?? "");
+    }
+    function applyLanguage(language) {
+      currentLanguage = language;
+      localStorage.setItem("afemok-language", language);
+      document.documentElement.lang = language;
+      document.title = t("pageTitle");
+      document.getElementById("languageSelect").value = language;
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        element.textContent = t(element.dataset.i18n);
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach(element => {
+        element.innerHTML = t(element.dataset.i18nHtml);
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+        element.placeholder = t(element.dataset.i18nPlaceholder);
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(element => {
+        element.setAttribute("aria-label", t(element.dataset.i18nAria));
+      });
+      if (databaseStatus.dataset.state) {
+        databaseStatus.textContent = databaseStatus.dataset.state === "connected"
+          ? t("connectedCatalog", { count: beats.length })
+          : databaseStatus.dataset.state === "error" ? t("databaseError") : t("demoCatalog");
+      }
+      renderCart();
+    }
+    const beats = [
+      { id: "midnight-run", title: "Midnight Run", genre: "Trap", bpm: 142, key: "F#m", price: 29, tag: "Chwa semèn nan", art: 1 },
+      { id: "blue-hour", title: "Blue Hour", genre: "R&B", bpm: 88, key: "C#m", price: 24, tag: "Smooth", art: 2 },
+      { id: "solèy-leve", title: "Solèy Leve", genre: "Afro", bpm: 106, key: "Am", price: 29, tag: "Afro vibe", art: 3 },
+      { id: "no-signal", title: "No Signal", genre: "Drill", bpm: 145, key: "Gm", price: 34, tag: "New drop", art: 4 },
+      { id: "komèt", title: "Komèt", genre: "Afro", bpm: 112, key: "D#m", price: 25, tag: "Afro fusion", art: 5 },
+      { id: "after-hours", title: "After Hours", genre: "R&B", bpm: 92, key: "Bm", price: 24, tag: "Late night", art: 6 },
+      { id: "tonbe-pa-tonbe", title: "Tonbe Pa Tonbe", genre: "Trap", bpm: 138, key: "Em", price: 29, tag: "Hard", art: 7 },
+      { id: "lakou", title: "Lakou", genre: "Drill", bpm: 140, key: "C#m", price: 34, tag: "Dark energy", art: 8 }
+    ];
+    const cart = new Map();
+    const favorites = new Set();
+    const databaseStatus = document.getElementById("databaseStatus");
+    let activeGenre = "Tout";
+    let searchTerm = "";
+    let playingId = null;
+    const grid = document.getElementById("beatsGrid");
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timeout);
+      showToast.timeout = window.setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[character]);
+    }
+
+    function renderBeats() {
+      const visible = beats.filter(beat => {
+        const matchesGenre = activeGenre === "Tout" || beat.genre === activeGenre;
+        const haystack = `${beat.title} ${beat.genre} ${beat.bpm} ${beat.key}`.toLowerCase();
+        return matchesGenre && haystack.includes(searchTerm.toLowerCase());
+      });
+      if (!visible.length) {
+        grid.innerHTML = `<div class="empty-state">${t("emptySearch")}</div>`;
+        return;
+      }
+      grid.innerHTML = visible.map(beat => `
+        <article class="beat-card">
+          <div class="cover cover-${beat.art}">
+            <span class="cover-tag">${escapeHtml(beat.tag)}</span>
+            <span class="cover-symbol" aria-hidden="true">A</span>
+            <button class="play-button" type="button" data-play="${escapeHtml(beat.id)}" aria-label="${playingId === beat.id ? t("stop") : t("listen")} ${escapeHtml(beat.title)}">
+              ${playingId === beat.id
+                ? '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 3h3v10H4zm5 0h3v10H9z" fill="currentColor"/></svg>'
+                : '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5-7-4.5z" fill="currentColor"/></svg>'}
+            </button>
+          </div>
+          <div class="beat-info">
+            <div class="beat-title-row">
+              <span class="beat-title">${escapeHtml(beat.title)}</span>
+              <button class="heart ${favorites.has(beat.id) ? "fav" : ""}" type="button" data-fav="${escapeHtml(beat.id)}" aria-label="${favorites.has(beat.id) ? t("removeFrom") : t("addTo")} ${t("favorite")}">♥</button>
+            </div>
+            <div class="producer">AfemOK · ${escapeHtml(beat.genre)} ${t("typeBeat")}</div>
+            <div class="beat-meta"><span><b>${beat.bpm}</b> ${t("bpm")}</span><span><b>${escapeHtml(beat.key)}</b></span><span><b>${escapeHtml(beat.genre)}</b></span></div>
+            <div class="beat-buy-row">
+              <span class="price">$${beat.price}</span>
+              <button class="add-button" type="button" data-add="${escapeHtml(beat.id)}">${cart.has(beat.id) ? t("addAgain") : t("addToCart")}</button>
+            </div>
+          </div>
+        </article>`).join("");
+    }
+
+    function renderCart() {
+      const items = [...cart.values()];
+      document.getElementById("cartCount").textContent = items.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cartTotal").textContent = `$${items.reduce((sum, item) => sum + item.beat.price * item.quantity, 0)}`;
+      document.getElementById("cartItems").innerHTML = items.length
+        ? items.map(({ beat, quantity }) => `
+            <div class="cart-item">
+              <div><strong>${escapeHtml(beat.title)}</strong><span>${escapeHtml(beat.genre)} · ${quantity} × $${beat.price}</span></div>
+              <button class="remove-item" type="button" data-remove="${escapeHtml(beat.id)}">${t("remove")}</button>
+            </div>`).join("")
+        : `<div class="cart-empty">${t("emptyCart")}</div>`;
+      renderBeats();
+    }
+
+    async function loadBeats() {
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        databaseStatus.dataset.state = "demo";
+        databaseStatus.textContent = t("demoCatalog");
+        renderBeats();
+        return;
+      }
+
+      try {
+        const baseUrl = SUPABASE_URL.replace(/\/+$/, "");
+        const response = await fetch(`${baseUrl}/rest/v1/beats?select=id,title,genre,bpm,key,price,tag,art&order=id.asc`, {
+          headers: {
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        if (!response.ok) throw new Error(`Supabase request failed (${response.status})`);
+        const rows = await response.json();
+        if (!Array.isArray(rows) || rows.some(beat =>
+          typeof beat.id !== "string" || typeof beat.title !== "string" ||
+          typeof beat.genre !== "string" || typeof beat.key !== "string" ||
+          !Number.isFinite(Number(beat.bpm)) || !Number.isFinite(Number(beat.price)) ||
+          !Number.isInteger(Number(beat.art)) || Number(beat.art) < 1 || Number(beat.art) > 8
+        )) {
+          throw new Error("Supabase returned invalid beat data");
+        }
+        beats.splice(0, beats.length, ...rows.map(beat => ({
+          id: beat.id,
+          title: beat.title,
+          genre: beat.genre,
+          bpm: Number(beat.bpm),
+          key: beat.key,
+          price: Number(beat.price),
+          tag: typeof beat.tag === "string" ? beat.tag : "",
+          art: Number(beat.art)
+        })));
+        databaseStatus.dataset.state = "connected";
+        databaseStatus.textContent = t("connectedCatalog", { count: beats.length });
+        renderCart();
+      } catch (error) {
+        console.error("Could not load AfemOK beats from Supabase.", error);
+        beats.splice(0, beats.length);
+        databaseStatus.dataset.state = "error";
+        databaseStatus.textContent = t("databaseError");
+        renderCart();
+      }
+    }
+
+    async function copyStoreLink() {
+      const link = window.location.href.split("#")[0];
+      try {
+        await navigator.clipboard.writeText(link);
+        showToast(t("copySuccess"));
+      } catch {
+        showToast(t("copyFallback", { link }));
+      }
+    }
+
+    function setCartOpen(open) {
+      document.getElementById("cartDrawer").classList.toggle("open", open);
+      document.getElementById("backdrop").classList.toggle("open", open);
+      document.getElementById("cartDrawer").setAttribute("aria-hidden", String(!open));
+      document.body.style.overflow = open ? "hidden" : "";
+      if (open) document.getElementById("closeCart").focus();
+    }
+
+    document.querySelectorAll(".filter").forEach(button => button.addEventListener("click", () => {
+      activeGenre = button.dataset.genre;
+      document.querySelector(".filter.active").classList.remove("active");
+      button.classList.add("active");
+      renderBeats();
+    }));
+    document.getElementById("searchInput").addEventListener("input", event => {
+      searchTerm = event.target.value.trim();
+      renderBeats();
+    });
+    document.getElementById("languageSelect").addEventListener("change", event => {
+      applyLanguage(event.target.value);
+    });
+    grid.addEventListener("click", event => {
+      const play = event.target.closest("[data-play]");
+      const fav = event.target.closest("[data-fav]");
+      const add = event.target.closest("[data-add]");
+      if (play) {
+        const beat = beats.find(item => item.id === play.dataset.play);
+        playingId = playingId === beat.id ? null : beat.id;
+        renderBeats();
+        showToast(playingId ? t("preview", { title: beat.title }) : t("previewStopped"));
+      } else if (fav) {
+        favorites.has(fav.dataset.fav) ? favorites.delete(fav.dataset.fav) : favorites.add(fav.dataset.fav);
+        renderBeats();
+      } else if (add) {
+        const beat = beats.find(item => item.id === add.dataset.add);
+        const current = cart.get(beat.id);
+        cart.set(beat.id, { beat, quantity: current ? current.quantity + 1 : 1 });
+        renderCart();
+        showToast(t("addedToCart", { title: beat.title }));
+      }
+    });
+    document.getElementById("cartItems").addEventListener("click", event => {
+      const remove = event.target.closest("[data-remove]");
+      if (remove) {
+        cart.delete(remove.dataset.remove);
+        renderCart();
+      }
+    });
+    document.getElementById("openCart").addEventListener("click", () => setCartOpen(true));
+    document.getElementById("closeCart").addEventListener("click", () => setCartOpen(false));
+    document.getElementById("backdrop").addEventListener("click", () => setCartOpen(false));
+    document.getElementById("checkout").addEventListener("click", () => showToast(t("checkoutNotice")));
+    document.getElementById("shareTop").addEventListener("click", copyStoreLink);
+    document.getElementById("shareCatalog").addEventListener("click", copyStoreLink);
+    document.getElementById("copyHero").addEventListener("click", copyStoreLink);
+    document.getElementById("copyBottom").addEventListener("click", copyStoreLink);
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") setCartOpen(false);
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+    applyLanguage(currentLanguage);
+    renderCart();
+    loadBeats();
+  </script>
+</body>
+</html>
